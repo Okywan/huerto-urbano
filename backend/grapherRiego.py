@@ -16,8 +16,8 @@ def crearGrafica():
         print(df)
         fechas = df[['fecha']].squeeze()
         temp = df[["temperatura"]].squeeze()
-        luz = df[["fecha","luz"]].squeeze()
-        humedad = df[["fecha","humedad"]].squeeze()
+        luz = df[["luz"]].squeeze()
+        humedad = df[["humedad"]].squeeze()
         specTemp = {
             "type":"scatter"
         }
@@ -33,7 +33,9 @@ def crearGrafica():
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=fechas, y=temp,mode='lines+markers',text='Temperatura', name='Temperatura'))
         fig.add_trace(go.Scatter(x=fechas, y=luz,mode="lines+markers",text='Luz', name='Luz')) 
-        fig.add_trace(go.Scatter(x=fechas, y=humedad,mode="lines+markers",text='Humedad', name='Humedad')) 
+        fig.add_trace(go.Scatter(x=fechas, y=humedad,mode='lines+markers',text='Humedad', name='Humedad')) 
+        fig.update_xaxes(type='date')
+        fig.update_yaxes(type='linear')
         #fig = px.line(df,x="fecha", y="luz", markers=True)
         #fig = px.line(df,x="fecha", y="temperatura", markers=True)
         #no chuta, solo se queda la última
